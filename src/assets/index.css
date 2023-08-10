@@ -1,0 +1,335 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .title {
+        @apply text-4xl font-title text-center m-4
+    }
+
+    .title > .emphasis {
+        @apply italic
+    }
+
+    .subtitle {
+        @apply text-2xl font-title text-left my-2
+    }
+
+    img.icon {
+        @apply hover:opacity-50 transition-opacity duration-300
+    }
+
+    nav.flex > * {
+        @apply py-4
+    }
+
+    .colour-transition {
+        @apply transition-colors duration-300
+    }
+
+    .primary-button {
+        @apply p-1 border-columbia-blue border-2 hover:bg-columbia-blue hover:text-oxford-blue transition-all duration-300 rounded-md
+    }
+
+    .primary-button:disabled, .primary-button.loading {
+        @apply opacity-30 hover:bg-transparent hover:text-inherit before:content-['✕'] before:mr-2 before:text-red-500
+    }
+
+    .secondary-button {
+        @apply p-1 bg-oxford-blue text-columbia-blue border-transparent border-2 hover:bg-transparent hover:text-oxford-blue colour-transition rounded-md hover:border-oxford-blue
+    }
+
+    .tertiary-button {
+        @apply p-1 bg-columbia-blue text-oxford-blue border-transparent border-2 hover:bg-transparent hover:text-columbia-blue colour-transition rounded-md hover:border-columbia-blue
+    }
+
+    html, body {
+        scrollbar-color: rgb(170 202 218) #081421;
+        scrollbar-width: thin;
+        @apply bg-space-blue font-header w-screen h-screen text-white overflow-x-hidden
+
+    }
+
+    .center {
+        @apply flex flex-col items-center justify-center
+    }
+
+    .nav-logo-long {
+        @apply h-9 my-5
+    }
+
+    .darken-hover {
+        @apply hover:opacity-50 transition-opacity duration-300
+    }
+
+
+    label.form-element {
+        @apply flex flex-col
+    }
+
+    label.form-element > span {
+        @apply text-xs font-title text-columbia-blue italic
+    }
+
+    label.form-element > input {
+        @apply bg-transparent placeholder:text-opacity-30 placeholder:text-columbia-blue text-columbia-blue border-b-2 border-0 focus:ring-0 hover:border-columbia-blue focus:border-columbia-blue px-0 border-light-cyan
+    }
+
+    .form-element > input:disabled, input.loading {
+        @apply opacity-30 hover:border-light-cyan select-none
+    }
+
+    .footnote {
+        @apply text-xs text-columbia-blue
+    }
+
+    .dotted-link {
+        @apply underline decoration-dotted hover:decoration-solid transition-all duration-300 hover:opacity-50 cursor-pointer
+    }
+
+    .overlay {
+        @apply fixed w-screen h-screen bg-oxford-blue flex flex-row justify-center items-center
+    }
+
+    .loading-logo {
+        @apply h-16 stroke-light-cyan my-5
+    }
+
+    .password-check {
+        @apply before:content-['⏺'] before:mr-2 before:transition-colors before:duration-500
+    }
+
+    .password-check.passed {
+        @apply before:text-green-500
+    }
+
+    .password-check.failed {
+        @apply before:text-red-500
+    }
+
+    .password-checks {
+        @apply grid grid-cols-2 grid-rows-3
+    }
+
+    .password-check:not(:last-child) {
+        @apply after:content-[',']
+    }
+
+    .password-check:last-child {
+        @apply after:content-['.']
+    }
+
+    .alert-card {
+        @apply rounded p-2 text-sm flex-row flex justify-between
+    }
+
+    .alert-card > .dismiss {
+        @apply hover:opacity-30 cursor-pointer
+    }
+
+    .vertical-nav {
+        @apply grid bg-oxford-blue w-max content-between
+    }
+
+    .account-box {
+        @apply bg-columbia-blue flex flex-row items-center text-oxford-blue
+    }
+
+    .nav-item {
+        @apply flex flex-row items-center space-x-2 text-light-cyan darken-hover w-max
+    }
+
+    .nav-item > i {
+        @apply text-columbia-blue
+    }
+
+    .card {
+        @apply rounded p-4 bg-columbia-blue text-oxford-blue
+    }
+
+    .card > .value {
+        @apply font-title text-5xl
+    }
+
+    .card > .value > .unit {
+        @apply text-3xl
+    }
+
+    .card > .value-name {
+        @apply text-xl font-light
+    }
+
+    .section-title {
+        @apply my-2 text-2xl before:mr-2 before:rounded before:bg-light-cyan before:w-1 flex text-columbia-blue
+    }
+
+    .group-card {
+        @apply px-1 rounded
+    }
+
+    .table-line > thead {
+        @apply border-b-2 border-columbia-blue font-light mb-5
+    }
+
+    .table-line > thead > tr > th {
+        @apply font-light
+    }
+
+    .table-line > tbody > tr > td {
+        @apply justify-center text-center justify-items-center
+    }
+
+    .table-line > tbody > tr > td > i {
+        @apply m-2 mx-auto h-1
+    }
+
+    .code {
+        @apply px-1 font-title bg-oxford-blue
+    }
+    .progress-container {
+        @apply bg-space-blue rounded w-full h-2
+    }
+
+    .progress-bar {
+        @apply transition-['width'] duration-300 rounded bg-light-cyan h-full w-0
+    }
+
+    .progress-bar[value='1'], .progress-bar[value='2']  {
+        @apply bg-red-500
+    }
+
+    .progress-bar[value='3']  {
+        @apply bg-yellow-500
+    }
+
+    .progress-bar[value='4']  {
+        @apply bg-green-500
+    }
+
+    .footer-item:not(:last-child) {
+        @apply after:content-['|'] after:mx-2
+    }
+
+    .setting-card {
+        @apply p-4 bg-oxford-blue rounded min-h-max
+    }
+
+    .section-header > span {
+        @apply font-light text-light-cyan
+    }
+
+    .product-table > thead > tr > th {
+        @apply font-light text-light-cyan font-title
+    }
+
+    .product-table > thead > tr {
+        @apply bg-space-blue rounded-lg
+    }
+
+    .product-table > tbody > tr > td {
+        @apply text-center align-middle
+    }
+
+    .product-table >tbody {
+        @apply space-y-4
+    }
+
+    .pill {
+        @apply px-2 rounded-lg text-center max-w-fit
+    }
+
+    .icon-button {
+        @apply rounded p-1 transition-colors duration-300 center w-6 h-6
+    }
+
+    .start-button {
+        @apply icon-button bg-green-400 hover:bg-green-800
+    }
+    .stop-button {
+        @apply icon-button bg-red-400 hover:bg-red-800
+    }
+    .restart-button {
+        @apply icon-button bg-orange-400 hover:bg-orange-800
+    }
+    .vertical-center {
+        @apply flex flex-col justify-center
+    }
+    .horizontal-center {
+        @apply flex flex-col items-center
+    }
+    .legend-item {
+        @apply flex flex-row gap-2 items-center
+    }
+    .legend-colour {
+        @apply w-4 h-4 rounded-sm
+    }
+    .pill-navigation {
+        @apply  rounded-xl flex-row flex gap-4 max-w-max cursor-pointer
+    }
+    .pill-navigation > .pill {
+        @apply rounded-xl py-1 px-2 hover:bg-columbia-blue colour-transition
+    }
+    .pill-navigation > .pill.selected {
+        @apply bg-columbia-blue
+    }
+    .statistics {
+        @apply flex md:flex-row md:justify-between md:items-center
+    }
+    .statistics > .statistic {
+        @apply flex flex-col gap-y-2 text-center
+    }
+    .statistics > .statistic > .value {
+        @apply font-title text-5xl after:content-['%'] after:text-3xl
+    }
+    .statistics > .statistic > .name {
+        @apply text-2xl font-light text-light-cyan
+    }
+    .footer-logo {
+        @apply w-20 h-20
+    }
+    .footer-icon {
+        @apply w-6 h-6 darken-hover fill-columbia-blue
+    }
+    .footer-element {
+        @apply font-light vertical-center
+    }
+    .footer-title {
+        @apply text-columbia-blue text-xl font-title font-normal
+    }
+    .type-selector {
+        @apply flex flex-row gap-4
+    }
+    .type-selector > li {
+        @apply hover:font-normal hover:text-columbia-blue transition-all duration-300
+    }
+    .type-selector > li:not(.selected) {
+        @apply font-extralight
+    }
+    .type-selector > .selected {
+        @apply text-columbia-blue font-title
+    }
+    .airport-selector {
+        @apply flex flex-row rounded-t-full
+    }
+    .airport-selector > li {
+        @apply hover:font-normal hover:text-columbia-blue transition-all duration-300 bg-space-blue h-full p-2 border-space-blue border-b-2 hover:border-columbia-blue
+    }
+    .airport-selector> li:not(.selected) {
+        @apply font-light
+    }
+    .airport-selector> .selected {
+        @apply text-columbia-blue font-title border-columbia-blue
+    }
+    .airport-input {
+        @apply underline decoration-dotted bg-transparent w-14 p-2 text-center focus-visible:outline-columbia-blue focus-visible:outline-0 focus-visible:no-underline
+    }
+    .fade-enter-active,
+    .fade-leave-active {
+        @apply transition-opacity duration-200
+    }
+
+    .fade-enter-from,
+    .fade-leave-to {
+        @apply opacity-0
+    }
+}
