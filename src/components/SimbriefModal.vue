@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import FullscreenModal from '@/components/FullscreenModal.vue'
-import { computed, ref, watch, watchEffect } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import { useFetch } from '@/fetch'
 import { useRouter } from 'vue-router'
 
@@ -9,7 +9,7 @@ const url = ref()
 const router = useRouter()
 
 watchEffect(() => {
-  if (simBriefID.value.length == 32) {
+  if (simBriefID.value.length >= 6 && simBriefID.value.length <= 32) {
     url.value = `https://www.simbrief.com/api/xml.fetcher.php?username=${simBriefID.value}&json=1`
   }
 })
@@ -72,7 +72,7 @@ const props = defineProps({
           with this service.
         </div>
       </div>
-      <div v-if="simBriefID.length == 32" class="space-y-4">
+      <div v-if="simBriefID.length <= 32 && simBriefID.length >= 6" class="space-y-4">
         <div class="center p-2 mt-10 bg-oxford-blue rounded-lg">
           <span v-if="!flightPlan"><i class="gg-spinner-alt"></i></span>
           <div v-else>

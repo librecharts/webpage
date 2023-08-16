@@ -300,7 +300,7 @@
         @apply flex flex-row gap-4
     }
     .type-selector > li {
-        @apply hover:font-normal hover:text-columbia-blue transition-all duration-300
+        @apply hover:font-normal hover:text-columbia-blue transition-all duration-300 select-none cursor-pointer
     }
     .type-selector > li:not(.selected) {
         @apply font-extralight
@@ -312,7 +312,7 @@
         @apply flex flex-row rounded-t-full
     }
     .airport-selector > li {
-        @apply hover:font-normal hover:text-columbia-blue transition-all duration-300 bg-space-blue h-full p-2 border-space-blue border-b-2 hover:border-columbia-blue
+        @apply hover:font-normal hover:text-columbia-blue transition-all duration-300 bg-space-blue h-full p-2 border-space-blue border-b-2 hover:border-columbia-blue select-none cursor-pointer
     }
     .airport-selector> li:not(.selected) {
         @apply font-light

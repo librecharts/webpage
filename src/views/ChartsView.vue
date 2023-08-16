@@ -1,6 +1,6 @@
 <template>
   <section class="w-screen h-screen flex flex-row">
-    <div class="bg-oxford-blue flex flex-col h-full flex-grow">
+    <div class="bg-oxford-blue flex flex-col h-full flex-grow transition-all duration-500 w-96">
       <div class="bg-space-blue center">
         <RouterLink to="/" class="darken-hover"
           ><LogoSvg class="nav-logo-long"></LogoSvg
@@ -30,7 +30,11 @@
             </div>
           </div>
         </div>
-        <ChartsSelector v-if="airports.length > 0" :airports="airports"></ChartsSelector>
+        <ChartsSelector
+          @chartSelected="(chart) => (selectedChart = chart)"
+          v-if="airports.length > 0"
+          :airports="airports"
+        ></ChartsSelector>
         <div v-else class="mx-1 bg-space-blue text-center w-80 center">
           <span class="m-12 font-light">No Airports Selected</span>
         </div>
@@ -38,16 +42,40 @@
     </div>
     <div class="w-full flex flex-col">
       <object
+        v-if="selectedChart"
         class="w-full h-full"
-        data="{{ url_for('static', path='charts/LP_AD_2_LPPT_01-1_en.pdf') }}"
-        type="application/pdf"
-      ></object>
-      <footer class="flex flex-row bg-oxford-blue w-full justify-between">
+        :data="selectedChart.source.url"
+        :type="selectedChart.filetype"
+      >
+        Hello, world
+      </object>
+      <div v-else class="w-full h-full center">
+        <div class="p-10 bg-oxford-blue rounded-lg center space-y-2">
+          <RouterLink to="/" class="darken-hover"><LogoSvg class="w-16 h-16"></LogoSvg></RouterLink>
+          <h1 class="text-2xl uppercase text-columbia-blue">No chart selected</h1>
+          <div class="horizontal-center space-y-2 mt-5">
+            <div class="flex flex-row gap-x-4 font-light text-gray-300">
+              <a class="dotted-link" href="https://github.com/librecharts">Github</a>
+              <a class="dotted-link" href="https://github.com/librecharts">Discord</a>
+              <a class="dotted-link" href="https://github.com/librecharts">API</a>
+            </div>
+            <span class="text-sm uppercase font-light text-gray-500"
+              >NAVIGATE. INFORMED. ANYWHERE.</span
+            >
+          </div>
+        </div>
+      </div>
+      <footer v-if="selectedChart" class="flex flex-row bg-oxford-blue w-full justify-between">
         <div class="p-2 px-4 bg-space-blue flex flex-row items-center gap-4">
-          <LogoSvg class="w-4 h-4 rounded-sm" />
+          <img
+            :src="'https://avatars.githubusercontent.com/' + selectedChart.source.contributor"
+            class="w-4 h-4 rounded-sm"
+          />
           <div class="flex flex-row gap-1">
             <span class="font-thin">Contributed by</span>
-            <span>MM-coder</span>
+            <a :href="'https://github.com/' + selectedChart.source.contributor">{{
+              selectedChart.source.contributor
+            }}</a>
           </div>
         </div>
         <div class="p-2 center horizontal-center">
@@ -56,11 +84,9 @@
             <strong>should not be used for real navigation</strong>.</span
           >
         </div>
-        <div class="p-2 px-4 bg-space-blue flex flex-row items-center gap-4">
-          <div>
-            <span class="font-thin">Source</span>
-            <a href="">Portugal vACC</a>
-          </div>
+        <div class="p-2 px-4 bg-space-blue flex flex-row items-center gap-1">
+          <span class="font-thin">Source</span>
+          <a :href="selectedChart.source.url">{{ selectedChart.source.name }}</a>
         </div>
       </footer>
     </div>
@@ -69,7 +95,7 @@
 <script setup lang="ts">
 import LogoSvg from '@/components/img/LogoSvg.vue'
 import ChartsSelector from '@/components/ChartsSelector.vue'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouteParams, useRouteQuery } from '@vueuse/router'
 
 let route = useRouteParams('route', null)
@@ -82,4 +108,7 @@ const airports = computed(() => {
     .map((r) => r.value)
     .filter((value) => value != null && value !== '')
 })
+
+const selectedChart = ref(null)
+const selectedAirport = ref(airports.value[0])
 </script>
