@@ -2,7 +2,7 @@
   <FullWidthBanner
     >LibreCharts is in <strong>BETA</strong> bugs and limited coverage are expected, please report
     any issues on our
-    <a class="dotted-link" href="https://github.com/librecharts/webpage">Github</a
+    <a class="dotted-link" href="https://github.com/librecharts/webpage/issues/new/choose">Github</a
     >.</FullWidthBanner
   >
   <BrandingNavCentered></BrandingNavCentered>
