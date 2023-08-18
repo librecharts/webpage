@@ -10,7 +10,7 @@
         {{ airport }}
       </li>
     </ul>
-    <Suspense>
+    <Suspense timeout="0">
       <AirportCharts
         @chartSelected="(chart) => $emit('chartSelected', chart)"
         :airport="selected"
@@ -25,7 +25,7 @@
 </template>
 <script setup lang="ts">
 import AirportCharts from '@/components/AirportCharts.vue'
-import { ref, toRef } from 'vue'
+import { ref, toRef, watch } from 'vue'
 
 const props = defineProps({
   airports: {
@@ -34,7 +34,14 @@ const props = defineProps({
   }
 })
 
-const airports = toRef(props, 'airports')
-
-const selected = ref(airports.value[0])
+const airports = toRef(props, 'airports') // Converting to ref to keep reactivity
+const selected = ref(airports.value ? airports.value[0] : '') // Default selected to the first airport on component load
+watch(airports, () => {
+  if (airports.value) {
+    // If no airport is selected or the selected airport is no longer in the array
+    if (selected.value === '' || !airports.value.includes(selected.value)) {
+      selected.value = airports.value[0] // Default to the first airport
+    }
+  }
+})
 </script>

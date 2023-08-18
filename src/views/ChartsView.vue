@@ -121,7 +121,7 @@ let alternateInput = debouncedRef(alternate, 1000)
 const airports = computed(() => {
   return [originInput, destinationInput, alternateInput]
     .map((r) => r.value)
-    .filter((value) => value != null && value !== '')
+    .filter((value) => value != null && value !== '' && value.length == 4)
 })
 
 const selectedChart = ref(null)

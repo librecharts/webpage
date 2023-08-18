@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import FullscreenModal from '@/components/FullscreenModal.vue'
 import { computed, ref, watchEffect } from 'vue'
-import { useFetch } from '@/fetch'
 import { useRouter } from 'vue-router'
+import { debouncedRef, useFetch } from '@vueuse/core'
 
 const simBriefID = ref('')
-const url = ref()
+const url = ref('')
+const deBouncedurl = debouncedRef(url, 1000)
 const router = useRouter()
 
 watchEffect(() => {
@@ -14,12 +15,14 @@ watchEffect(() => {
   }
 })
 
-const { data, error } = useFetch(url)
+const { isFetching, data, error } = await useFetch(deBouncedurl)
 const flightPlan = computed(() => {
   if (error.value !== null) {
+    console.log(error.value)
     return error.value
   } else {
     if (data.value !== null) {
+      console.log(data.value)
       return {
         flight_number: data.value.general.icao_airline + data.value.general.flight_number,
         origin: data.value.origin.icao_code,

@@ -17,12 +17,13 @@ export async function getChartsByICAOCode(icao_code: string) {
   }
 }
 
-export async function getCategorizedChartsByICAOCode(icao_code: Ref<String>) {
-  const { isFetching, error, data } = await useFetch(
-    base_url + `/charts/${unref(icao_code)}/categorized`,
-    {
-      refetch: true
-    }
-  )
+export async function getCategorizedChartsByICAOCode(airport: Ref<String>) {
+  const currentURL = computed(() => {
+    return base_url + `/charts/${airport.value}/categorized`
+  })
+  console.log(currentURL.value)
+  const { isFetching, error, data } = await useFetch(currentURL, {
+    refetch: true
+  })
   return computed(() => (error.value ? error.value : JSON.parse(data.value)))
 }

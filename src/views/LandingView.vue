@@ -28,7 +28,10 @@
                     >import from SimBrief</span
                   ></span
                 >
-                <SimbriefModal v-if="modalToggle" @close="modalToggle = false"></SimbriefModal>
+                <Suspense>
+                  <SimbriefModal v-if="modalToggle" @close="modalToggle = false"></SimbriefModal>
+                  <template #fallback> </template>
+                </Suspense>
               </div>
             </div>
           </div>
@@ -127,6 +130,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import SimbriefModal from '@/components/SimbriefModal.vue'
 import FeatureIconCard from '@/components/FeatureIconCard.vue'
+import AirportCharts from '@/components/AirportCharts.vue'
 
 const destination = ref<string>()
 const router = useRouter()
