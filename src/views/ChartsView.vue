@@ -57,7 +57,31 @@
         :data="selectedChart.source.url"
         :type="selectedChart.filetype"
       >
-        Hello, world
+        <div class="w-full h-full center">
+          <div class="p-10 bg-oxford-blue rounded-lg center space-y-2">
+            <RouterLink to="/" class="darken-hover"
+              ><LogoSvg class="w-16 h-16"></LogoSvg
+            ></RouterLink>
+            <h1 class="text-2xl uppercase text-red-400">Chart loading failed</h1>
+            <span class="text-md"
+              >You can try <a class="dotted-link" :href="selectedChart.source.url">going direct</a>.
+            </span>
+            <span class="text-xs"
+              >If you believe this is an error please open a bug report
+              <a class="dotted-link" :href="selectedChart.source.url">here</a>.
+            </span>
+            <div class="horizontal-center space-y-2 mt-5">
+              <div class="flex flex-row gap-x-4 font-light text-gray-300">
+                <a class="dotted-link" href="https://github.com/librecharts">Github</a>
+                <a class="dotted-link" href="">Discord</a>
+                <a class="dotted-link" href="">API</a>
+              </div>
+              <span class="text-sm uppercase font-light text-gray-500"
+                >NAVIGATE. INFORMED. ANYWHERE.</span
+              >
+            </div>
+          </div>
+        </div>
       </object>
       <div v-else class="w-full h-full center">
         <div class="p-10 bg-oxford-blue rounded-lg center space-y-2">

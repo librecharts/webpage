@@ -6,6 +6,7 @@ import { computed, ref } from 'vue'
 const input = ref<string>('')
 
 const systemIcaoCodes = await getICAOCodes()
+const selectedAirport = ref<string>('')
 const systemAirports = airports.default.filter((airport) =>
   systemIcaoCodes.value.includes(airport.icao)
 )
@@ -36,10 +37,23 @@ const results = computed(() => {
       class="z-50 position-relative border-columbia-blue border-dashed p-4 rounded-lg border-2 border-opacity-20 space-y-2 h-96 overflow-y-scroll"
       :class="results.length > 0 ? '' : 'center'"
     >
-      <span v-if="results.length == 0" class="uppercase text-gray-600 font-title"
-        >NO AIRPORTS FOUND</span
+      <div class="flex flex-col text-center text-gray-600" v-if="results.length == 0">
+        <span class="uppercase font-title">NO AIRPORTS FOUND</span>
+        <span class="text-xs font-light"
+          >Hint: Can't find your favourite airport, ask for it to be added
+          <a class="dotted-link" href="https://github.com/librecharts/charts">here</a>.</span
+        >
+      </div>
+      <div
+        v-else
+        v-for="airport in results"
+        @click="
+          () => {
+            $emit('selectedAirport', airport.icao)
+            selectedAirport = airport.icao
+          }
+        "
       >
-      <div v-else v-for="airport in results" @click="$emit('selectedAirport', airport.icao)">
         <div
           class="bg-oxford-blue px-4 py-2 rounded-lg select-none cursor-pointer darken-hover flex flex-row items-center gap-x-4"
         >
