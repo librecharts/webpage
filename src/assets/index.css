@@ -199,7 +199,7 @@
         @apply flex flex-row rounded-t-full
     }
     .airport-selector > li {
-        @apply hover:font-normal hover:text-columbia-blue transition-all duration-300 bg-space-blue h-full p-2 border-space-blue border-b-2 hover:border-columbia-blue select-none cursor-pointer
+        @apply hover:font-normal hover:text-columbia-blue transition-all duration-300 bg-space-blue h-full p-2 border-space-blue border-b-2 hover:border-columbia-blue select-none cursor-pointer uppercase
     }
     .airport-selector> li:not(.selected) {
         @apply font-light
@@ -208,7 +208,7 @@
         @apply text-columbia-blue font-title border-columbia-blue
     }
     .airport-input {
-        @apply underline decoration-dotted bg-transparent w-14 p-2 text-center focus-visible:outline-columbia-blue focus-visible:outline-0 focus-visible:no-underline
+        @apply underline decoration-dotted bg-transparent w-14 p-2 text-center focus-visible:outline-columbia-blue focus-visible:outline-0 focus-visible:no-underline uppercase
     }
     .fade-enter-active,
     .fade-leave-active {
