@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const props = defineProps({
-  name: String,
-  description: String,
-  icon: String
+  name: { type: String, required: true },
+  description: { type: String, required: true },
+  icon: { type: String, required: true }
 })
 </script>
 
