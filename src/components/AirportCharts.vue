@@ -25,7 +25,7 @@ const emit = defineEmits(['chartSelected'])
 const defaultChart = ref(chartData.value ? chartData.value[selectedCategory.value][0] : null) // Default to first chart in selected values
 
 // @NOTE(Mauro): We use filenames to distinguish charts as filenames are per-definition unique and comparing chart objects
-//               is impossible as VueJS wraps them in a Proxy() element inside the template scope
+//               is impossible as Vue.js wraps them in a Proxy() element inside the template scope
 
 const selectedChart = ref(defaultChart.value ? defaultChart.value.filename : null)
 if (defaultChart.value) {
