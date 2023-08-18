@@ -33,15 +33,8 @@ const props = defineProps({
     required: true
   }
 })
-watch(
-  () => props.airports,
-  () => {
-    if (!props.airports.includes(selected.value) || selected.value === null) {
-      selected.value = props.airports[0]
-    }
-  },
-  { deep: true }
-)
 
-const selected = ref('')
+const airports = toRef(props, 'airports')
+
+const selected = ref(airports.value[0])
 </script>

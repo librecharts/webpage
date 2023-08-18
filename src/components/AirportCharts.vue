@@ -4,19 +4,20 @@ import { computed, ref, toRef } from 'vue'
 import { getCategorizedChartsByICAOCode } from '@/api'
 
 const props = defineProps({
-  airport: String
+  airport: {
+    type: String,
+    required: true
+  }
 })
 
 const selected = ref('')
 const selectedChart = ref()
 const chartData = await getCategorizedChartsByICAOCode(toRef(props, 'airport'))
 const types = Object.keys(chartData.value)
-console.log(types)
 selected.value = types[0]
 const charts = computed(() => {
   return chartData.value[selected.value]
 })
-console.log(props.airport)
 
 const abbreviations = {
   chart: 'GEN',
@@ -27,8 +28,6 @@ const abbreviations = {
   approach: 'APPR',
   area: 'AREA'
 }
-
-const chartSelected = ref(null)
 
 defineEmits(['chartSelected'])
 </script>
@@ -51,10 +50,10 @@ defineEmits(['chartSelected'])
         @click="
           () => {
             $emit('chartSelected', chart)
-            chartSelected = chart.filename
+            selectedChart = chart.filename
           }
         "
-        :class="chart.filename == chartSelected ? 'selected' : ''"
+        :class="chart.filename == selectedChart ? 'selected' : ''"
       ></ChartCard>
     </div>
   </div>

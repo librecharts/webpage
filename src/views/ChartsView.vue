@@ -11,13 +11,18 @@
           <div class="flex flex-col items-end">
             <div class="flex flex-row gap-3 items-center font-title">
               <label>
-                <input type="text" class="airport-input" v-model="origin" placeholder="ORIG" />
+                <input type="text" class="airport-input" v-model="originInput" placeholder="ORIG" />
               </label>
               <div>
                 <i class="gg-arrow-long-right"></i>
               </div>
               <label>
-                <input type="text" class="airport-input" v-model="destination" placeholder="DEST" />
+                <input
+                  type="text"
+                  class="airport-input"
+                  v-model="destinationInput"
+                  placeholder="DEST"
+                />
               </label>
             </div>
             <div v-if="alternate" class="flex flex-row gap-3 items-center font-title">
@@ -25,7 +30,12 @@
                 <i class="gg-corner-down-right"></i>
               </div>
               <label>
-                <input type="text" class="airport-input" v-model="alternate" placeholder="ALTN" />
+                <input
+                  type="text"
+                  class="airport-input"
+                  v-model="alternateInput"
+                  placeholder="ALTN"
+                />
               </label>
             </div>
           </div>
@@ -97,19 +107,24 @@ import LogoSvg from '@/components/img/LogoSvg.vue'
 import ChartsSelector from '@/components/ChartsSelector.vue'
 import { computed, ref } from 'vue'
 import { useRouteParams, useRouteQuery } from '@vueuse/router'
-import { refDebounced } from '@vueuse/core'
+import { debouncedRef, refDebounced } from '@vueuse/core'
 
 let route = useRouteParams('route', null)
-let origin = refDebounced(useRouteQuery('origin', null), 1000)
-let destination = refDebounced(useRouteQuery('destination', null), 1000)
-let alternate = refDebounced(useRouteQuery('alternate', null), 1000)
+let origin = useRouteQuery('origin', null)
+let destination = useRouteQuery('destination', null)
+let alternate = useRouteQuery('alternate', null)
+
+let originInput = debouncedRef(origin, 1000)
+let destinationInput = debouncedRef(destination, 1000)
+let alternateInput = debouncedRef(alternate, 1000)
 
 const airports = computed(() => {
-  return [origin, destination, alternate]
+  return [originInput, destinationInput, alternateInput]
     .map((r) => r.value)
     .filter((value) => value != null && value !== '')
 })
 
 const selectedChart = ref(null)
 const selectedAirport = ref(airports.value[0])
+console.log(selectedAirport.value)
 </script>

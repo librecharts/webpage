@@ -87,53 +87,10 @@
         @apply underline decoration-dotted hover:decoration-solid transition-all duration-300 hover:opacity-50 cursor-pointer
     }
 
-    .overlay {
-        @apply fixed w-screen h-screen bg-oxford-blue flex flex-row justify-center items-center
-    }
-
-    .loading-logo {
-        @apply h-16 stroke-light-cyan my-5
-    }
-
-    .password-check {
-        @apply before:content-['⏺'] before:mr-2 before:transition-colors before:duration-500
-    }
-
-    .password-check.passed {
-        @apply before:text-green-500
-    }
-
-    .password-check.failed {
-        @apply before:text-red-500
-    }
-
-    .password-checks {
-        @apply grid grid-cols-2 grid-rows-3
-    }
-
-    .password-check:not(:last-child) {
-        @apply after:content-[',']
-    }
-
-    .password-check:last-child {
-        @apply after:content-['.']
-    }
-
-    .alert-card {
-        @apply rounded p-2 text-sm flex-row flex justify-between
-    }
-
-    .alert-card > .dismiss {
-        @apply hover:opacity-30 cursor-pointer
-    }
-
     .vertical-nav {
         @apply grid bg-oxford-blue w-max content-between
     }
 
-    .account-box {
-        @apply bg-columbia-blue flex flex-row items-center text-oxford-blue
-    }
 
     .nav-item {
         @apply flex flex-row items-center space-x-2 text-light-cyan darken-hover w-max
@@ -163,76 +120,6 @@
         @apply my-2 text-2xl before:mr-2 before:rounded before:bg-light-cyan before:w-1 flex text-columbia-blue
     }
 
-    .group-card {
-        @apply px-1 rounded
-    }
-
-    .table-line > thead {
-        @apply border-b-2 border-columbia-blue font-light mb-5
-    }
-
-    .table-line > thead > tr > th {
-        @apply font-light
-    }
-
-    .table-line > tbody > tr > td {
-        @apply justify-center text-center justify-items-center
-    }
-
-    .table-line > tbody > tr > td > i {
-        @apply m-2 mx-auto h-1
-    }
-
-    .code {
-        @apply px-1 font-title bg-oxford-blue
-    }
-    .progress-container {
-        @apply bg-space-blue rounded w-full h-2
-    }
-
-    .progress-bar {
-        @apply transition-['width'] duration-300 rounded bg-light-cyan h-full w-0
-    }
-
-    .progress-bar[value='1'], .progress-bar[value='2']  {
-        @apply bg-red-500
-    }
-
-    .progress-bar[value='3']  {
-        @apply bg-yellow-500
-    }
-
-    .progress-bar[value='4']  {
-        @apply bg-green-500
-    }
-
-    .footer-item:not(:last-child) {
-        @apply after:content-['|'] after:mx-2
-    }
-
-    .setting-card {
-        @apply p-4 bg-oxford-blue rounded min-h-max
-    }
-
-    .section-header > span {
-        @apply font-light text-light-cyan
-    }
-
-    .product-table > thead > tr > th {
-        @apply font-light text-light-cyan font-title
-    }
-
-    .product-table > thead > tr {
-        @apply bg-space-blue rounded-lg
-    }
-
-    .product-table > tbody > tr > td {
-        @apply text-center align-middle
-    }
-
-    .product-table >tbody {
-        @apply space-y-4
-    }
 
     .pill {
         @apply px-2 rounded-lg text-center max-w-fit

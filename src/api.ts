@@ -24,7 +24,5 @@ export async function getCategorizedChartsByICAOCode(icao_code: Ref<String>) {
       refetch: true
     }
   )
-  // console.log(data.value)
-  console.log(typeof error.value)
   return computed(() => (error.value ? error.value : JSON.parse(data.value)))
 }
