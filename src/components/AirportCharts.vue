@@ -16,25 +16,32 @@ const types = computed(() => {
   return chartData.value ? Object.keys(chartData.value) : null
 })
 
-const selected = ref(types.value ? types.value[0] : '')
+const selectedCategory = ref(types.value ? types.value[0] : '')
 
 // Set up default chart on component load
 
 const emit = defineEmits(['chartSelected'])
 
-const defaultChart = ref(chartData.value ? chartData.value[selected.value][0] : null)
+const defaultChart = ref(chartData.value ? chartData.value[selectedCategory.value][0] : null) // Default to first chart in selected values
+
+// @NOTE(Mauro): We use filenames to distinguish charts as filenames are per-definition unique and comparing chart objects
+//               is impossible as VueJS wraps them in a Proxy() element inside the template scope
+
 const selectedChart = ref(defaultChart.value ? defaultChart.value.filename : null)
 if (defaultChart.value) {
   emit('chartSelected', defaultChart.value)
 }
 
+// Watcher to update selected type when types are updated
 watch(types, () => {
   if (types.value) {
-    selected.value = types.value[0]
+    selectedCategory.value = types.value[0]
   }
 })
+
+// Computed to get the charts from the currently selected class
 const charts = computed(() => {
-  return chartData.value && selected.value ? chartData.value[selected.value] : null
+  return chartData.value && selectedCategory.value ? chartData.value[selectedCategory.value] : null
 })
 
 const abbreviations = {
@@ -46,10 +53,6 @@ const abbreviations = {
   approach: 'APPR',
   area: 'AREA'
 }
-
-watch(currentAirport, () => {
-  console.log(currentAirport.value)
-})
 </script>
 
 <template>
@@ -57,8 +60,8 @@ watch(currentAirport, () => {
     <ul class="type-selector">
       <li
         v-for="type in types"
-        @click="selected = type"
-        :class="type == selected ? 'selected' : ''"
+        @click="selectedCategory = type"
+        :class="type == selectedCategory ? 'selected' : ''"
       >
         <a>{{ abbreviations[type] }}</a>
       </li>
