@@ -2,7 +2,11 @@
   <div class="mx-1 p-2 w-full flex flex-col">
     <ul class="airport-selector">
       <li>&starf;</li>
-      <li v-for="airport in airports" :class="airport == selected ? 'selected' : ''">
+      <li
+        v-for="airport in airports"
+        :class="airport == selected ? 'selected' : ''"
+        @click="selected = airport"
+      >
         {{ airport }}
       </li>
     </ul>
@@ -21,11 +25,23 @@
 </template>
 <script setup lang="ts">
 import AirportCharts from '@/components/AirportCharts.vue'
-import { ref, watch } from 'vue'
+import { computed, ref, toRef, watch } from 'vue'
 
 const props = defineProps({
-  airports: Array<String>
+  airports: {
+    type: Array<string>,
+    required: true
+  }
 })
+watch(
+  () => props.airports,
+  () => {
+    if (!props.airports.includes(selected.value) || selected.value === null) {
+      selected.value = props.airports[0]
+    }
+  },
+  { deep: true }
+)
 
-const selected = ref(props.airports[0])
+const selected = ref('')
 </script>

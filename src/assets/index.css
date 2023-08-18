@@ -332,4 +332,7 @@
     .fade-leave-to {
         @apply opacity-0
     }
+    .chart-card.selected {
+        @apply text-columbia-blue
+    }
 }

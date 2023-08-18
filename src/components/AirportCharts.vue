@@ -1,22 +1,22 @@
 <script setup lang="ts">
 import ChartCard from '@/components/ChartCard.vue'
-import { computed, ref } from 'vue'
-import { useFetch } from '@vueuse/core/index'
+import { computed, ref, toRef } from 'vue'
 import { getCategorizedChartsByICAOCode } from '@/api'
+
 const props = defineProps({
   airport: String
 })
 
 const selected = ref('')
 const selectedChart = ref()
-const chartData = await getCategorizedChartsByICAOCode(props.airport)
-const types = Object.keys(chartData)
+const chartData = await getCategorizedChartsByICAOCode(toRef(props, 'airport'))
+const types = Object.keys(chartData.value)
 console.log(types)
 selected.value = types[0]
-// eslint-disable-next-line vue/no-setup-props-destructure
 const charts = computed(() => {
-  return chartData[selected.value]
+  return chartData.value[selected.value]
 })
+console.log(props.airport)
 
 const abbreviations = {
   chart: 'GEN',
@@ -48,8 +48,13 @@ defineEmits(['chartSelected'])
       <ChartCard
         v-for="chart in charts"
         :chart="chart"
-        @click="$emit('chartSelected', chart), (chartSelected = chart)"
-        :class="chart === chartSelected ? 'selected' : ''"
+        @click="
+          () => {
+            $emit('chartSelected', chart)
+            chartSelected = chart.filename
+          }
+        "
+        :class="chart.filename == chartSelected ? 'selected' : ''"
       ></ChartCard>
     </div>
   </div>

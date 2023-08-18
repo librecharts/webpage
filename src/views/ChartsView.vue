@@ -97,11 +97,12 @@ import LogoSvg from '@/components/img/LogoSvg.vue'
 import ChartsSelector from '@/components/ChartsSelector.vue'
 import { computed, ref } from 'vue'
 import { useRouteParams, useRouteQuery } from '@vueuse/router'
+import { refDebounced } from '@vueuse/core'
 
 let route = useRouteParams('route', null)
-let origin = useRouteQuery('origin', null)
-let destination = useRouteQuery('destination', null)
-let alternate = useRouteQuery('alternate', null)
+let origin = refDebounced(useRouteQuery('origin', null), 1000)
+let destination = refDebounced(useRouteQuery('destination', null), 1000)
+let alternate = refDebounced(useRouteQuery('alternate', null), 1000)
 
 const airports = computed(() => {
   return [origin, destination, alternate]
