@@ -68,25 +68,39 @@
     <div class="center space-y-2">
       <h1 class="text-4xl font-title text-center">Flights Covered.</h1>
       <div class="bg-space-blue pill-navigation">
-        <div class="selected pill">VATSIM</div>
-        <div class="pill">SimToolkitPro</div>
-        <div class="pill">POSCON</div>
+        <div
+          class="pill"
+          @click="selectedProvider = 'vatsim'"
+          :class="selectedProvider == 'vatsim' ? 'selected' : ''"
+        >
+          VATSIM
+        </div>
+        <div
+          class="pill"
+          @click="selectedProvider = 'stp'"
+          :class="selectedProvider == 'stp' ? 'selected' : ''"
+        >
+          SimToolkitPro
+        </div>
+        <div
+          class="pill"
+          @click="selectedProvider = 'poscon'"
+          :class="selectedProvider == 'poscon' ? 'selected' : ''"
+        >
+          POSCON
+        </div>
       </div>
     </div>
-    <div class="statistics">
-      <div class="statistic">
-        <span class="value">64</span>
-        <span class="name">Departure & Arrival</span>
-      </div>
-      <div class="statistic">
-        <span class="value">20</span>
-        <span class="name">Departure or Arrival</span>
-      </div>
-      <div class="statistic">
-        <span class="value">84</span>
-        <span class="name">At least one airport</span>
-      </div>
-    </div>
+    <KeepAlive>
+      <Suspense timeout="0">
+        <CoverageCard :provider="selectedProvider"></CoverageCard>
+        <template #fallback>
+          <div class="flex flex-col items-center">
+            <i class="gg-spinner-alt"></i>
+          </div>
+        </template>
+      </Suspense>
+    </KeepAlive>
   </section>
   <section class="w-full p-10 center space-y-10">
     <h1 class="text-4xl font-title">Why Librecharts?</h1>
@@ -138,10 +152,12 @@ import SimbriefModal from '@/components/SimbriefModal.vue'
 import FeatureIconCard from '@/components/FeatureIconCard.vue'
 import AirportCharts from '@/components/AirportCharts.vue'
 import FullWidthBanner from '@/components/FullWidthBanner.vue'
+import CoverageCard from '@/components/CoverageCard.vue'
 
 const destination = ref<string>()
 const router = useRouter()
 const modalToggle = ref<boolean>(false)
+const selectedProvider = ref<string>('vatsim')
 
 function findCharts() {
   router.push({ path: '/charts', query: { destination: destination.value } })
