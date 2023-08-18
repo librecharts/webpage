@@ -1,7 +1,7 @@
 <template>
   <transition name="fade" appear>
     <div
-      class="w-screen h-screen z-40 top-0 bottom-0 right-0 fixed bg-opacity-5 center bg-columbia-blue"
+      class="w-screen h-screen z-40 top-0 bottom-0 right-0 fixed bg-opacity-5 center bg-columbia-blue max-h-full"
     >
       <div class="relative">
         <div

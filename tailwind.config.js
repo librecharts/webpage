@@ -10,13 +10,13 @@ module.exports = {
         'columbia-blue': '#AACADA'
       },
       fontFamily: {
-        'header': ['IBM Plex Sans', 'sans-serif'],
-        'title': ['IBM Plex Mono', 'monospace']
+        header: ['IBM Plex Sans', 'sans-serif'],
+        title: ['IBM Plex Mono', 'monospace']
+      },
+      height: {
+        sidebar: '45rem'
       }
-    },
+    }
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require('@tailwindcss/typography')]
 }
-

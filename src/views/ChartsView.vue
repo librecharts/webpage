@@ -1,12 +1,12 @@
 <template>
   <section class="w-screen h-screen flex flex-row">
-    <div class="bg-oxford-blue flex flex-col h-full flex-grow transition-all duration-500 w-96">
+    <div class="bg-oxford-blue flex flex-col transition-all duration-500 w-96 h-full">
       <div class="bg-space-blue center">
         <RouterLink to="/" class="darken-hover"
           ><LogoSvg class="nav-logo-long"></LogoSvg
         ></RouterLink>
       </div>
-      <div class="p-4 space-y-10 max-h-full flex-grow">
+      <div class="p-4 space-y-10">
         <div class="horizontal-center">
           <div class="flex flex-col items-end">
             <div class="flex flex-row gap-3 items-center font-title">
@@ -66,8 +66,8 @@
           <div class="horizontal-center space-y-2 mt-5">
             <div class="flex flex-row gap-x-4 font-light text-gray-300">
               <a class="dotted-link" href="https://github.com/librecharts">Github</a>
-              <a class="dotted-link" href="https://github.com/librecharts">Discord</a>
-              <a class="dotted-link" href="https://github.com/librecharts">API</a>
+              <a class="dotted-link" href="">Discord</a>
+              <a class="dotted-link" href="">API</a>
             </div>
             <span class="text-sm uppercase font-light text-gray-500"
               >NAVIGATE. INFORMED. ANYWHERE.</span
@@ -126,5 +126,4 @@ const airports = computed(() => {
 
 const selectedChart = ref(null)
 const selectedAirport = ref(airports.value[0])
-console.log(selectedAirport.value)
 </script>

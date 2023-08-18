@@ -20,14 +20,29 @@
             <div class="space-y-4">
               <span class="text-columbia-blue text-xl">Where are you flying?</span>
               <div class="flex flex-row gap-2 space-y-2 my-2" @submit="findCharts">
-                <label class="form-element md:w-1/2">
-                  <input type="text" name="airport" v-model="destination" placeholder="ex. LPPT" />
-                </label>
+                <Suspense>
+                  <AirportSearch
+                    @selectedAirport="
+                      (code) => {
+                        destination = code
+                        findCharts()
+                      }
+                    "
+                  ></AirportSearch>
+                  <template #fallback>
+                    <label class="form-element md:w-1/2">
+                      <input
+                        type="text"
+                        name="airport"
+                        class="animate-pulse duration-200"
+                        disabled
+                        placeholder="Loading"
+                      />
+                    </label>
+                  </template>
+                </Suspense>
               </div>
               <div class="space-x-2 flex flex-row items-center">
-                <button @click="findCharts" class="primary-button md:w-1/4 text-center">
-                  Find Charts
-                </button>
                 <span class="text-sm"
                   >or
                   <span class="dotted-link" @click="modalToggle = !modalToggle"
@@ -153,6 +168,7 @@ import FeatureIconCard from '@/components/FeatureIconCard.vue'
 import AirportCharts from '@/components/AirportCharts.vue'
 import FullWidthBanner from '@/components/FullWidthBanner.vue'
 import CoverageCard from '@/components/CoverageCard.vue'
+import AirportSearch from '@/components/AirportSearch.vue'
 
 const destination = ref<string>()
 const router = useRouter()

@@ -157,7 +157,7 @@
         @apply rounded-xl py-1 px-2 hover:bg-columbia-blue colour-transition
     }
     .pill-navigation > .pill.selected {
-        @apply bg-columbia-blue
+        @apply bg-columbia-blue text-oxford-blue
     }
     .statistics {
         @apply flex md:flex-row md:justify-between md:items-center
