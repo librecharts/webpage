@@ -1,4 +1,10 @@
 <template>
+  <FullWidthBanner
+    >LibreCharts is in <strong>BETA</strong> bugs and limited coverage are expected, please report
+    any issues on our
+    <a class="dotted-link" href="https://github.com/librecharts/webpage">Github</a
+    >.</FullWidthBanner
+  >
   <BrandingNavCentered></BrandingNavCentered>
   <section class="w-full h-full">
     <div class="flex md:flex-row flex-col h-3/4">
@@ -131,6 +137,7 @@ import { useRouter } from 'vue-router'
 import SimbriefModal from '@/components/SimbriefModal.vue'
 import FeatureIconCard from '@/components/FeatureIconCard.vue'
 import AirportCharts from '@/components/AirportCharts.vue'
+import FullWidthBanner from '@/components/FullWidthBanner.vue'
 
 const destination = ref<string>()
 const router = useRouter()
