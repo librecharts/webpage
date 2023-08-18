@@ -26,7 +26,7 @@ If you're using a local API ensure you change `base_url` in `src/api.ts` to your
 
 ### Contribution guidelines
 
-You may view the contrubition guidelines in [CONTRIBUTING.md](CONTRIBUTING.md).
+You may view the contrubition guidelines in [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
 If you wish to contribute charts please see the [charts repository](https://github.com/librecharts/charts).
 
