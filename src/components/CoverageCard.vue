@@ -80,7 +80,8 @@ const coverage = computed(() => {
     <div class="statistic">
       <span class="value">{{
         Math.round(
-          coverage.arrival_and_departure.coverage / coverage.arrival_and_departure.array.length
+          (coverage.arrival_and_departure.coverage / coverage.arrival_and_departure.array.length) *
+            100
         )
       }}</span>
       <span class="name">Departure & Arrival</span>
@@ -88,7 +89,8 @@ const coverage = computed(() => {
     <div class="statistic">
       <span class="value">{{
         Math.round(
-          coverage.arrival_or_departure.coverage / coverage.arrival_or_departure.array.length
+          (coverage.arrival_or_departure.coverage / coverage.arrival_or_departure.array.length) *
+            100
         )
       }}</span>
       <span class="name">Departure or Arrival</span>
@@ -96,7 +98,8 @@ const coverage = computed(() => {
     <div class="statistic">
       <span class="value">{{
         Math.round(
-          coverage.arrival_or_departure.coverage / coverage.arrival_or_departure.array.length
+          (coverage.arrival_or_departure.coverage / coverage.arrival_or_departure.array.length) *
+            100
         )
       }}</span>
       <span class="name">At least one airport</span>
