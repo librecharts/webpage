@@ -25,7 +25,7 @@
 </template>
 <script setup lang="ts">
 import AirportCharts from '@/components/AirportCharts.vue'
-import { computed, ref, toRef, watch } from 'vue'
+import { ref, toRef } from 'vue'
 
 const props = defineProps({
   airports: {

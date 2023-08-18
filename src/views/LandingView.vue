@@ -125,7 +125,6 @@ import BrandingNavCentered from '@/components/headers/BrandingNavCentered.vue'
 import LandingGlobe from '@/components/LandingGlobe.vue'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import FullscreenModal from '@/components/FullscreenModal.vue'
 import SimbriefModal from '@/components/SimbriefModal.vue'
 import FeatureIconCard from '@/components/FeatureIconCard.vue'
 
