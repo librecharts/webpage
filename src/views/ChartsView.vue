@@ -64,7 +64,10 @@
             ></RouterLink>
             <h1 class="text-2xl uppercase text-red-400">Chart loading failed</h1>
             <span class="text-md">
-              You can try <a class="dotted-link" :href="selectedChart.source.url">going direct</a>.
+              You can try
+              <a class="dotted-link" :href="selectedChart.source.url" target="_blank"
+                >going direct</a
+              >.
             </span>
             <span class="text-xs"
               >If you believe this is an error please open a bug report

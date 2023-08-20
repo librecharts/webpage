@@ -96,7 +96,7 @@ const abbreviations = {
           <h1
             class="font-title text-lg text-center bg-columbia-blue p-2 text-oxford-blue uppercase"
           >
-            {{ runway == 'all runways' ? '' : 'RWY' }} {{ runway }}
+            {{ runway == 'all runways' ? '' : 'RWY' }} {{ runway.split(',').join(' & ') }}
           </h1>
           <ChartCard
             v-for="chart in chartsPerRunway[runway]"
