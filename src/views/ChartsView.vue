@@ -119,6 +119,7 @@
           >
         </div>
         <div class="p-2 px-4 bg-space-blue flex flex-row items-center gap-1">
+          <CloudIcon class="w-5 h-5 text-light-cyan"></CloudIcon>
           <span class="font-thin">Source</span>
           <a :href="selectedChart.source.url">{{ selectedChart.source.name }}</a>
         </div>
@@ -131,8 +132,9 @@ import LogoSvg from '@/components/img/LogoSvg.vue'
 import ChartsSelector from '@/components/ChartsSelector.vue'
 import { computed, ref } from 'vue'
 import { useRouteParams, useRouteQuery } from '@vueuse/router'
-import { debouncedRef, refDebounced } from '@vueuse/core'
+import { debouncedRef } from '@vueuse/core'
 import { getChartFromCache } from '@/api'
+import { CloudIcon } from '@heroicons/vue/24/outline'
 
 let route = useRouteParams('route', null)
 let origin = useRouteQuery('origin', null)

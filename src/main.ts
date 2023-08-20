@@ -4,7 +4,6 @@ import { createApp } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import LandingView from '@/views/LandingView.vue'
 import ChartsView from '@/views/ChartsView.vue'
-
 const routes = [
   { path: '/', component: LandingView },
   { path: '/charts', component: ChartsView }
