@@ -103,6 +103,8 @@ const abbreviations = {
           <ChartCard
             v-for="chart in chartsPerRunway[runway]"
             :chart="chart"
+            :abbreviation="abbreviations[selectedCategory]"
+            :hideRunway="true"
             @click="
               () => {
                 $emit('chartSelected', chart)
@@ -117,6 +119,7 @@ const abbreviations = {
         <ChartCard
           v-for="chart in charts"
           :chart="chart"
+          :abbreviation="abbreviations[selectedCategory]"
           @click="
             () => {
               $emit('chartSelected', chart)
