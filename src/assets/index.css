@@ -184,7 +184,7 @@
         @apply text-columbia-blue text-xl font-title font-normal
     }
     .type-selector {
-        @apply flex flex-row gap-4
+        @apply flex flex-row flex-wrap gap-4 justify-center
     }
     .type-selector > li {
         @apply hover:font-normal hover:text-columbia-blue transition-all duration-300 select-none cursor-pointer

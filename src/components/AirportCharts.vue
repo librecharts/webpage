@@ -48,7 +48,8 @@ const chartsPerRunway = computed(() => {
   if (
     selectedCategory.value == 'approach' ||
     selectedCategory.value == 'arrival' ||
-    selectedCategory.value == 'departure'
+    selectedCategory.value == 'departure' ||
+    selectedCategory.value == 'visual'
   ) {
     const objectsByRunways = {}
     charts.value.forEach((chart) => {
@@ -65,9 +66,6 @@ const chartsPerRunway = computed(() => {
   } else {
     return null
   }
-})
-watch(charts, () => {
-  console.log(chartsPerRunway.value)
 })
 
 const abbreviations = {
