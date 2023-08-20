@@ -55,6 +55,7 @@ const icons = {
   arrival: 'gg-arrow-bottom-left',
   visual: 'gg-eye',
   approach: 'gg-arrow-bottom-right',
-  chart: 'gg-file-document'
+  chart: 'gg-file-document',
+  area: 'gg-trees'
 }
 </script>
