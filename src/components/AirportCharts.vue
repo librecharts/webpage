@@ -74,8 +74,8 @@ const abbreviations = {
   chart: 'GEN',
   visual: 'VIS',
   ground: 'GRND',
-  departure: 'DEPT',
-  arrival: 'ARRIV',
+  departure: 'SID',
+  arrival: 'STAR',
   approach: 'APPR',
   area: 'AREA'
 }

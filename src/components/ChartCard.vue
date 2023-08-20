@@ -18,13 +18,13 @@
         <h1 class="text-lg font-thin capitalize">
           <span v-if="chart.runways">
             <span class="font-medium">
-              {{ chart.subtype ? chart.subtype : '' }} {{ abbreviation }}
               <template v-if="!props.hideRunway">
                 RWY
                 <span class="font-title text-columbia-blue">
                   {{ chart.runways.length > 1 ? chart.runways.join(',') : chart.runways[0] }}
                 </span>
               </template>
+              {{ chart.subtype ? chart.subtype : '' }} {{ abbreviation }}
             </span>
           </span>
         </h1>
@@ -42,8 +42,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import ch = CSS.ch
-
 const props = defineProps({
   chart: {
     type: Object,
