@@ -54,7 +54,7 @@
       <object
         v-if="selectedChart"
         class="w-full h-full"
-        :data="selectedChart.source.url"
+        :data="getChartFromCache(selectedChart.source.url)"
         :type="selectedChart.filetype"
       >
         <div class="w-full h-full center">
@@ -63,8 +63,8 @@
               ><LogoSvg class="w-16 h-16"></LogoSvg
             ></RouterLink>
             <h1 class="text-2xl uppercase text-red-400">Chart loading failed</h1>
-            <span class="text-md"
-              >You can try <a class="dotted-link" :href="selectedChart.source.url">going direct</a>.
+            <span class="text-md">
+              You can try <a class="dotted-link" :href="selectedChart.source.url">going direct</a>.
             </span>
             <span class="text-xs"
               >If you believe this is an error please open a bug report
@@ -132,6 +132,7 @@ import ChartsSelector from '@/components/ChartsSelector.vue'
 import { computed, ref } from 'vue'
 import { useRouteParams, useRouteQuery } from '@vueuse/router'
 import { debouncedRef, refDebounced } from '@vueuse/core'
+import { getChartFromCache } from '@/api'
 
 let route = useRouteParams('route', null)
 let origin = useRouteQuery('origin', null)

@@ -2,20 +2,8 @@ import { useFetch } from '@vueuse/core'
 import type { ComputedRef, Ref } from 'vue'
 import { computed, unref } from 'vue'
 
-const base_url: String = 'http://localhost:8000'
-
-export async function getChartsByICAOCode(icao_code: string) {
-  const { isFetching, data, error } = await useFetch(base_url + '/charts/' + icao_code)
-  if (!isFetching) {
-    if (error.value !== null) {
-      return error.value
-    } else {
-      if (data.value !== null) {
-        return data
-      }
-    }
-  }
-}
+const base_url: String = import.meta.env.VITE_API_URL
+const cache_url: String = import.meta.env.VITE_PROXY_URL
 
 export async function getCategorizedChartsByICAOCode(airport: Ref<String>) {
   const currentURL = computed(() => {
@@ -41,4 +29,13 @@ export async function getCoverageStatistics(provider: Ref<String>) {
 export async function getICAOCodes(): Promise<ComputedRef<Array<string>>> {
   const { isFetching, error, data } = await useFetch(base_url + '/codes')
   return computed(() => (error.value ? error.value : JSON.parse(data.value)))
+}
+
+export function getChartFromCache(url: string): string {
+  /**
+   * Returns a chart's URL in the proxy
+   * @param url An array containing ICAO codes
+   *
+   */
+  return cache_url + '/chart/' + url
 }
