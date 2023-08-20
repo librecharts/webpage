@@ -4,7 +4,7 @@
   >
     <div class="w-5">
       <div v-if="chart.subtype">
-        <span v-if="chart.subtype.length < 5" class="text-columbia-blue font-title">{{
+        <span v-if="chart.subtype.length <= 5" class="text-columbia-blue font-title">{{
           chart.subtype
         }}</span>
         <i v-else :class="icons[props.chart.type]" style="--ggs: 0.8"></i>

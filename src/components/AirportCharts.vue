@@ -44,6 +44,32 @@ const charts = computed(() => {
   return chartData.value && selectedCategory.value ? chartData.value[selectedCategory.value] : null
 })
 
+const chartsPerRunway = computed(() => {
+  if (
+    selectedCategory.value == 'approach' ||
+    selectedCategory.value == 'arrival' ||
+    selectedCategory.value == 'departure'
+  ) {
+    const objectsByRunways = {}
+    charts.value.forEach((chart) => {
+      if (chart.runways) {
+        ;(objectsByRunways[chart.runways.join(',')] ??= []).push(chart)
+      } else {
+        ;(objectsByRunways['all runways'] ??= []).push(chart)
+      }
+    })
+    return Object.keys(objectsByRunways).length == 1 &&
+      Object.keys(objectsByRunways).includes('all runways')
+      ? null
+      : objectsByRunways
+  } else {
+    return null
+  }
+})
+watch(charts, () => {
+  console.log(chartsPerRunway.value)
+})
+
 const abbreviations = {
   chart: 'GEN',
   visual: 'VIS',
@@ -67,7 +93,27 @@ const abbreviations = {
       </li>
     </ul>
     <div class="w-full max-h-full flex flex-col gap-2 overflow-y-scroll">
-      <template v-if="charts">
+      <template v-if="chartsPerRunway">
+        <div class="space-y-2" v-for="runway in Object.keys(chartsPerRunway).sort()">
+          <h1
+            class="font-title text-lg text-center bg-columbia-blue p-2 text-oxford-blue uppercase"
+          >
+            {{ runway == 'all runways' ? '' : 'RWY' }} {{ runway }}
+          </h1>
+          <ChartCard
+            v-for="chart in chartsPerRunway[runway]"
+            :chart="chart"
+            @click="
+              () => {
+                $emit('chartSelected', chart)
+                selectedChart = chart.filename
+              }
+            "
+            :class="chart.filename == selectedChart ? 'selected' : ''"
+          ></ChartCard>
+        </div>
+      </template>
+      <template v-else-if="charts">
         <ChartCard
           v-for="chart in charts"
           :chart="chart"
