@@ -24,9 +24,12 @@
                   {{ chart.runways.length > 1 ? chart.runways.join(',') : chart.runways[0] }}
                 </span>
               </template>
-              {{ chart.subtype ? chart.subtype : '' }} {{ abbreviation }}
             </span>
           </span>
+          <div class="font-medium">
+            <span class="text-columbia-blue">{{ chart.subtype ? chart.subtype : '' }} </span>
+            {{ abbreviation }}
+          </div>
         </h1>
         <div class="flex flex-row text-xs gap-3 font-title font-light">
           <span v-if="chart.stars">
