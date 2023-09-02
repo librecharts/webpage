@@ -69,7 +69,7 @@ const chartsPerRunway = computed(() => {
 })
 
 const abbreviations = {
-  chart: 'GEN',
+  general: 'GEN',
   visual: 'VIS',
   ground: 'GRND',
   departure: 'SID',

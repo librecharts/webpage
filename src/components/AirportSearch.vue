@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import * as airports from 'airport-data'
+import * as airports from '@mm-coder/ourairports-json'
 import { getICAOCodes } from '@/api'
 import { computed, ref } from 'vue'
-
 const input = ref<string>('')
-
+const regionNamesInEnglish = new Intl.DisplayNames(['en'], { type: 'region' })
 const systemIcaoCodes = await getICAOCodes()
 const selectedAirport = ref<string>('')
 const systemAirports = airports.default.filter((airport) =>
-  systemIcaoCodes.value.includes(airport.icao)
+  systemIcaoCodes.value.includes(airport.ident)
 )
 const placeholder = computed(() => {
   return `ex. ${systemIcaoCodes.value[Math.floor(Math.random() * systemIcaoCodes.value.length)]}`
@@ -16,13 +15,22 @@ const placeholder = computed(() => {
 const results = computed(() => {
   const value = input.value
   return input.value != ''
-    ? systemAirports.filter(
-        (airport) =>
-          airport.name.toLowerCase().includes(value.toLowerCase()) ||
-          airport.icao.startsWith(value.toUpperCase()) ||
-          airport.country.toLowerCase().includes(value.toLowerCase()) ||
-          airport.city.toLowerCase().includes(value.toLowerCase())
-      )
+    ? systemAirports
+        .filter(
+          (airport) =>
+            airport.name.toLowerCase().includes(value.toLowerCase()) ||
+            airport.ident.startsWith(value.toUpperCase()) ||
+            airport.ident == value.toLowerCase() ||
+            regionNamesInEnglish
+              .of(airport.iso_country)
+              .toLowerCase()
+              .includes(value.toLowerCase()) ||
+            airport.keywords
+              .toLowerCase()
+              .split(',')
+              .find((a) => a.includes(value.toLowerCase()))
+        )
+        .slice(0, 100) // Limit to 100 responses
     : null
 })
 </script>
@@ -41,16 +49,18 @@ const results = computed(() => {
         <span class="uppercase font-title">NO AIRPORTS FOUND</span>
         <span class="text-xs font-light"
           >Hint: Can't find your favourite airport, ask for it to be added
-          <a class="dotted-link" href="https://github.com/librecharts/charts">here</a>.</span
+          <a class="dotted-link" href="https://github.com/librecharts/charts/issues/new">here</a
+          >.</span
         >
       </div>
+
       <div
         v-else
         v-for="airport in results"
         @click="
           () => {
-            $emit('selectedAirport', airport.icao)
-            selectedAirport = airport.icao
+            $emit('selectedAirport', airport.ident)
+            selectedAirport = airport.ident
           }
         "
       >
@@ -59,13 +69,21 @@ const results = computed(() => {
         >
           <i class="gg-pin text-columbia-blue"></i>
           <div class="space-y-1">
-            <h1 class="text-xl">{{ airport.name }}</h1>
+            <h1 class="text-xl">
+              {{ airport.name }}
+            </h1>
             <div class="flex flex-row gap-2 text-sm font-title">
-              <span class="font-light">{{ airport.city }}, {{ airport.country }}</span>
-              <span class="uppercase">{{ airport.icao }}</span>
+              <span class="font-light"
+                >{{ airport.municipality ? airport.municipality + ',' : '' }}
+                {{ regionNamesInEnglish.of(airport.iso_country) }}</span
+              >
+              <span class="uppercase">{{ airport.ident }}</span>
             </div>
           </div>
         </div>
+      </div>
+      <div v-if="results.length > 5" class="text-center uppercase text-xs text-gray-600">
+        Showing the first {{ results.length }} results
       </div>
     </div>
   </div>
