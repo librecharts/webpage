@@ -5,8 +5,51 @@
 import Globe from 'globe.gl'
 import { onMounted, ref } from 'vue'
 import * as THREE from 'three'
+import { get } from '@vueuse/core'
 
 const colors = ['#6EA4BF', '#AACADA', '#0C1E31']
+const countryInformation = {
+  IRL: 'aip',
+  DN1: 'aip',
+  ESP: 'aip',
+  BEN: 'aip',
+  BFA: 'aip',
+  CMR: 'aip',
+  CAF: 'aip',
+  COD: 'aip',
+  CIV: 'aip',
+  GAB: 'aip',
+  GNQ: 'aip',
+  MDG: 'aip',
+  MLI: 'aip',
+  MRT: 'aip',
+  NER: 'aip',
+  SEN: 'aip',
+  TCD: 'aip',
+  TGO: 'aip',
+  GNB: 'aip',
+  HRV: 'aip',
+  US1: 'aip',
+  BIH: 'aip',
+  SWE: 'aip',
+  RUS: 'aip',
+  KAZ: 'aip',
+  NZ1: 'aip',
+  SVK: 'aip',
+  DEU: 'aip',
+  SRB: 'aip',
+  MNE: 'aip',
+  GB1: 'aip',
+  BEL: 'aip',
+  LUX: 'aip',
+  GRC: 'aip',
+  KOS: 'aip',
+  ISL: 'aip',
+  FI1: 'aip',
+  PRT: 'aip',
+  CHL: 'vacc',
+  CHE: 'vacc'
+}
 
 export default {
   setup() {
@@ -33,8 +76,16 @@ export default {
       updateDimensions()
 
       function createMaterial(country) {
+        function getColour() {
+          if (Object.keys(countryInformation).includes(country.properties.SOV_A3)) {
+            return countryInformation[country.properties.SOV_A3] == 'aip' ? '#AACADA' : '#6EA4BF'
+          } else {
+            return '#0C1E31'
+          }
+        }
+
         return new THREE.MeshLambertMaterial({
-          color: colors[Math.floor(Math.random() * colors.length)],
+          color: getColour(),
           side: THREE.DoubleSide
         })
       }
