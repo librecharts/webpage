@@ -11,6 +11,8 @@ const colors = ['#6EA4BF', '#AACADA', '#0C1E31']
 const countryInformation = {
   IRL: 'aip',
   DN1: 'aip',
+  MYS: 'aip',
+  DZA: 'aip',
   ESP: 'aip',
   BEN: 'aip',
   BFA: 'aip',
@@ -30,11 +32,15 @@ const countryInformation = {
   GNB: 'aip',
   HRV: 'aip',
   US1: 'aip',
+  IND: 'aip',
   BIH: 'aip',
+  MAR: 'aip',
+  SAH: 'aip',
   SWE: 'aip',
   RUS: 'aip',
   KAZ: 'aip',
   NZ1: 'aip',
+  ZAF: 'aip',
   SVK: 'aip',
   DEU: 'aip',
   SRB: 'aip',
@@ -43,12 +49,19 @@ const countryInformation = {
   BEL: 'aip',
   LUX: 'aip',
   GRC: 'aip',
+  NL1: 'aip',
+  AU1: 'aip',
   KOS: 'aip',
+  MNG: 'aip',
   ISL: 'aip',
+  DOM: 'aip',
   FI1: 'aip',
   PRT: 'aip',
   CHL: 'vacc',
-  CHE: 'vacc'
+  CHE: 'vacc',
+  MOZ: 'vacc',
+  BWA: 'vacc',
+  NAM: 'vacc'
 }
 
 export default {

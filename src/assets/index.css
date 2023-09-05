@@ -222,4 +222,8 @@
     .chart-card.selected {
         @apply text-columbia-blue
     }
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+
 }

@@ -19,7 +19,6 @@ export async function getCoverageStatistics(provider: Ref<String>) {
   const currentURL = computed(() => {
     return base_url + `/coverage/${provider.value}`
   })
-  console.log(currentURL.value)
   const { isFetching, error, data } = await useFetch(currentURL, {
     refetch: true
   })
@@ -37,5 +36,6 @@ export function getChartFromCache(url: string): string {
    * @param url An array containing ICAO codes
    *
    */
+  console.log(url)
   return cache_url + '/chart/' + url
 }

@@ -28,7 +28,8 @@ const results = computed(() => {
             airport.keywords
               .toLowerCase()
               .split(',')
-              .find((a) => a.includes(value.toLowerCase()))
+              .find((a) => a.includes(value.toLowerCase())) ||
+            airport.municipality.toLowerCase().startsWith(value.toLowerCase())
         )
         .slice(0, 100) // Limit to 100 responses
     : null
