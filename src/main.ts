@@ -20,6 +20,7 @@ const app = createApp({})
 Sentry.init({
   app,
   dsn: import.meta.env.VITE_SENTRY_URI,
+  environment: import.meta.env.VITE_SENTRY_ENV,
   trackComponents: true,
   integrations: [
     new Sentry.BrowserTracing({

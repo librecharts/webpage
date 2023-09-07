@@ -1,5 +1,5 @@
 <template>
-  <section class="w-screen h-screen flex flex-row overflow-y-hidden">
+  <section class="w-screen h-screen flex flex-row overflow-hidden">
     <div class="bg-oxford-blue flex flex-col transition-all duration-500 w-96 h-full">
       <div class="bg-space-blue center">
         <RouterLink to="/" class="darken-hover"

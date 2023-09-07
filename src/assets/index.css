@@ -51,7 +51,7 @@
     }
 
     .center {
-        @apply flex flex-row items-center justify-center
+        @apply flex flex-col items-center justify-center
     }
 
     .nav-logo-long {
@@ -67,7 +67,7 @@
         @apply flex flex-col
     }
 
-    label.form-element > span {
+    label.form-element > span.label {
         @apply text-xs font-title text-columbia-blue italic
     }
 
@@ -226,7 +226,13 @@
         -moz-appearance: textfield;
     }
     .dark-filter {
-        filter: invert(64%) contrast(228%) brightness(80%) hue-rotate(180deg)
+        filter: invert(70%) contrast(228%) brightness(80%) hue-rotate(180deg)
+    }
+    .sidebar-icon {
+        @apply rounded-full text-oxford-blue bg-columbia-blue w-16 h-16 p-4 center hover:bg-oxford-blue colour-transition hover:text-columbia-blue
+    }
+    .sidebar-icon.disabled {
+        @apply bg-gray-600 text-columbia-blue
     }
 
 }
