@@ -5,7 +5,6 @@
 import Globe from 'globe.gl'
 import { onMounted, ref } from 'vue'
 import * as THREE from 'three'
-import { get } from '@vueuse/core'
 
 const colors = ['#6EA4BF', '#AACADA', '#0C1E31']
 const countryInformation = {

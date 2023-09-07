@@ -21,7 +21,6 @@ Sentry.init({
   app,
   dsn: import.meta.env.VITE_SENTRY_URI,
   environment: import.meta.env.VITE_SENTRY_ENV,
-  trackComponents: true,
   integrations: [
     new Sentry.BrowserTracing({
       routingInstrumentation: Sentry.vueRouterInstrumentation(router)
@@ -29,7 +28,7 @@ Sentry.init({
     new Sentry.Replay(),
     new HttpClient()
   ],
-  tracesSampleRate: 1.0,
+  tracesSampleRate: import.meta.env.VITE_SENTRY_ENV == 'development' ? 1 : 0.1,
   replaysSessionSampleRate: 0.1,
   replaysOnErrorSampleRate: 1.0
 })

@@ -3,236 +3,234 @@
 @tailwind utilities;
 
 @layer components {
-    .title {
-        @apply text-4xl font-title text-center m-4
-    }
+  .title {
+    @apply text-4xl font-title text-center m-4;
+  }
 
-    .title > .emphasis {
-        @apply italic
-    }
+  .title > .emphasis {
+    @apply italic;
+  }
 
-    .subtitle {
-        @apply text-2xl font-title text-left my-2
-    }
+  .subtitle {
+    @apply text-2xl font-title text-left my-2;
+  }
 
-    img.icon {
-        @apply hover:opacity-50 transition-opacity duration-300
-    }
+  img.icon {
+    @apply hover:opacity-50 transition-opacity duration-300;
+  }
 
-    nav.flex > * {
-        @apply py-4
-    }
+  nav.flex > * {
+    @apply py-4;
+  }
 
-    .colour-transition {
-        @apply transition-colors duration-300
-    }
+  .colour-transition {
+    @apply transition-colors duration-300;
+  }
 
-    .primary-button {
-        @apply p-1 border-columbia-blue border-2 hover:bg-columbia-blue hover:text-oxford-blue transition-all duration-300 rounded-md
-    }
+  .primary-button {
+    @apply p-1 border-columbia-blue border-2 hover:bg-columbia-blue hover:text-oxford-blue transition-all duration-300 rounded-md;
+  }
 
-    .primary-button:disabled, .primary-button.loading {
-        @apply opacity-30 hover:bg-transparent hover:text-inherit before:content-['✕'] before:mr-2 before:text-red-500
-    }
+  .primary-button:disabled,
+  .primary-button.loading {
+    @apply opacity-30 hover:bg-transparent hover:text-inherit before:content-['✕'] before:mr-2 before:text-red-500;
+  }
 
-    .secondary-button {
-        @apply p-1 bg-oxford-blue text-columbia-blue border-transparent border-2 hover:bg-transparent hover:text-oxford-blue colour-transition rounded-md hover:border-oxford-blue
-    }
+  .secondary-button {
+    @apply p-1 bg-oxford-blue text-columbia-blue border-transparent border-2 hover:bg-transparent hover:text-oxford-blue colour-transition rounded-md hover:border-oxford-blue;
+  }
 
-    .tertiary-button {
-        @apply p-1 bg-columbia-blue text-oxford-blue border-transparent border-2 hover:bg-transparent hover:text-columbia-blue colour-transition rounded-md hover:border-columbia-blue
-    }
+  .tertiary-button {
+    @apply p-1 bg-columbia-blue text-oxford-blue border-transparent border-2 hover:bg-transparent hover:text-columbia-blue colour-transition rounded-md hover:border-columbia-blue;
+  }
 
-    html, body {
-        scrollbar-color: rgb(170 202 218) #081421;
-        scrollbar-width: thin;
-        @apply bg-space-blue font-header w-screen h-screen text-white overflow-x-hidden
+  html,
+  body {
+    scrollbar-color: rgb(170 202 218) #081421;
+    scrollbar-width: thin;
+    @apply bg-space-blue font-header w-screen h-screen text-white overflow-x-hidden;
+  }
 
-    }
+  .center {
+    @apply flex flex-col items-center justify-center;
+  }
 
-    .center {
-        @apply flex flex-col items-center justify-center
-    }
+  .nav-logo-long {
+    @apply h-9 my-5;
+  }
 
-    .nav-logo-long {
-        @apply h-9 my-5
-    }
+  .darken-hover {
+    @apply hover:opacity-50 transition-opacity duration-300;
+  }
 
-    .darken-hover {
-        @apply hover:opacity-50 transition-opacity duration-300
-    }
+  label.form-element {
+    @apply flex flex-col;
+  }
 
+  label.form-element > span.label {
+    @apply text-xs font-title text-columbia-blue italic;
+  }
 
-    label.form-element {
-        @apply flex flex-col
-    }
+  label.form-element > input {
+    @apply bg-transparent placeholder:text-opacity-30 placeholder:text-columbia-blue text-columbia-blue border-b-2 border-0 focus:ring-0 hover:border-columbia-blue focus:border-columbia-blue px-0 border-light-cyan;
+  }
 
-    label.form-element > span.label {
-        @apply text-xs font-title text-columbia-blue italic
-    }
+  .form-element > input:disabled,
+  input.loading {
+    @apply opacity-30 hover:border-light-cyan select-none;
+  }
 
-    label.form-element > input {
-        @apply bg-transparent placeholder:text-opacity-30 placeholder:text-columbia-blue text-columbia-blue border-b-2 border-0 focus:ring-0 hover:border-columbia-blue focus:border-columbia-blue px-0 border-light-cyan
-    }
+  .footnote {
+    @apply text-xs text-columbia-blue;
+  }
 
-    .form-element > input:disabled, input.loading {
-        @apply opacity-30 hover:border-light-cyan select-none
-    }
+  .dotted-link {
+    @apply underline decoration-dotted hover:decoration-solid transition-all duration-300 hover:opacity-50 cursor-pointer;
+  }
 
-    .footnote {
-        @apply text-xs text-columbia-blue
-    }
+  .vertical-nav {
+    @apply grid bg-oxford-blue w-max content-between;
+  }
 
-    .dotted-link {
-        @apply underline decoration-dotted hover:decoration-solid transition-all duration-300 hover:opacity-50 cursor-pointer
-    }
+  .nav-item {
+    @apply flex flex-row items-center space-x-2 text-light-cyan darken-hover w-max;
+  }
 
-    .vertical-nav {
-        @apply grid bg-oxford-blue w-max content-between
-    }
+  .nav-item > i {
+    @apply text-columbia-blue;
+  }
 
+  .card {
+    @apply rounded p-4 bg-columbia-blue text-oxford-blue;
+  }
 
-    .nav-item {
-        @apply flex flex-row items-center space-x-2 text-light-cyan darken-hover w-max
-    }
+  .card > .value {
+    @apply font-title text-5xl;
+  }
 
-    .nav-item > i {
-        @apply text-columbia-blue
-    }
+  .card > .value > .unit {
+    @apply text-3xl;
+  }
 
-    .card {
-        @apply rounded p-4 bg-columbia-blue text-oxford-blue
-    }
+  .card > .value-name {
+    @apply text-xl font-light;
+  }
 
-    .card > .value {
-        @apply font-title text-5xl
-    }
+  .section-title {
+    @apply my-2 text-2xl before:mr-2 before:rounded before:bg-light-cyan before:w-1 flex text-columbia-blue;
+  }
 
-    .card > .value > .unit {
-        @apply text-3xl
-    }
+  .pill {
+    @apply px-2 rounded-lg text-center max-w-fit;
+  }
 
-    .card > .value-name {
-        @apply text-xl font-light
-    }
+  .icon-button {
+    @apply rounded p-1 transition-colors duration-300 center w-6 h-6;
+  }
 
-    .section-title {
-        @apply my-2 text-2xl before:mr-2 before:rounded before:bg-light-cyan before:w-1 flex text-columbia-blue
-    }
+  .start-button {
+    @apply icon-button bg-green-400 hover:bg-green-800;
+  }
+  .stop-button {
+    @apply icon-button bg-red-400 hover:bg-red-800;
+  }
+  .restart-button {
+    @apply icon-button bg-orange-400 hover:bg-orange-800;
+  }
+  .vertical-center {
+    @apply flex flex-col justify-center;
+  }
+  .horizontal-center {
+    @apply flex flex-col items-center;
+  }
+  .legend-item {
+    @apply flex flex-row gap-2 items-center;
+  }
+  .legend-colour {
+    @apply w-4 h-4 rounded-sm;
+  }
+  .pill-navigation {
+    @apply rounded-xl flex-row flex gap-4 max-w-max cursor-pointer;
+  }
+  .pill-navigation > .pill {
+    @apply rounded-xl py-1 px-2 hover:bg-columbia-blue colour-transition;
+  }
+  .pill-navigation > .pill.selected {
+    @apply bg-columbia-blue text-oxford-blue;
+  }
+  .statistics {
+    @apply flex md:flex-row justify-between;
+  }
+  .statistics > .statistic {
+    @apply flex flex-col gap-y-2 text-center;
+  }
+  .statistics > .statistic > .value {
+    @apply font-title text-5xl after:content-['%'] after:text-3xl;
+  }
+  .statistics > .statistic > .name {
+    @apply text-2xl font-light text-light-cyan;
+  }
+  .footer-logo {
+    @apply w-20 h-20;
+  }
+  .footer-icon {
+    @apply w-6 h-6 darken-hover fill-columbia-blue;
+  }
+  .footer-element {
+    @apply font-light vertical-center;
+  }
+  .footer-title {
+    @apply text-columbia-blue text-xl font-title font-normal;
+  }
+  .type-selector {
+    @apply flex flex-row flex-wrap gap-4 justify-center;
+  }
+  .type-selector > li {
+    @apply hover:font-normal hover:text-columbia-blue transition-all duration-300 select-none cursor-pointer;
+  }
+  .type-selector > li:not(.selected) {
+    @apply font-extralight;
+  }
+  .type-selector > .selected {
+    @apply text-columbia-blue font-title;
+  }
+  .airport-selector {
+    @apply flex flex-row rounded-t-full;
+  }
+  .airport-selector > li {
+    @apply hover:font-normal hover:text-columbia-blue transition-all duration-300 bg-space-blue h-full p-2 border-space-blue border-b-2 hover:border-columbia-blue select-none cursor-pointer uppercase;
+  }
+  .airport-selector > li:not(.selected) {
+    @apply font-light;
+  }
+  .airport-selector > .selected {
+    @apply text-columbia-blue font-title border-columbia-blue;
+  }
+  .airport-input {
+    @apply underline decoration-dotted bg-transparent w-14 p-2 text-center focus-visible:outline-columbia-blue focus-visible:outline-0 focus-visible:no-underline uppercase;
+  }
+  .fade-enter-active,
+  .fade-leave-active {
+    @apply transition-opacity duration-200;
+  }
 
-
-    .pill {
-        @apply px-2 rounded-lg text-center max-w-fit
-    }
-
-    .icon-button {
-        @apply rounded p-1 transition-colors duration-300 center w-6 h-6
-    }
-
-    .start-button {
-        @apply icon-button bg-green-400 hover:bg-green-800
-    }
-    .stop-button {
-        @apply icon-button bg-red-400 hover:bg-red-800
-    }
-    .restart-button {
-        @apply icon-button bg-orange-400 hover:bg-orange-800
-    }
-    .vertical-center {
-        @apply flex flex-col justify-center
-    }
-    .horizontal-center {
-        @apply flex flex-col items-center
-    }
-    .legend-item {
-        @apply flex flex-row gap-2 items-center
-    }
-    .legend-colour {
-        @apply w-4 h-4 rounded-sm
-    }
-    .pill-navigation {
-        @apply  rounded-xl flex-row flex gap-4 max-w-max cursor-pointer
-    }
-    .pill-navigation > .pill {
-        @apply rounded-xl py-1 px-2 hover:bg-columbia-blue colour-transition
-    }
-    .pill-navigation > .pill.selected {
-        @apply bg-columbia-blue text-oxford-blue
-    }
-    .statistics {
-        @apply flex md:flex-row justify-between
-    }
-    .statistics > .statistic {
-        @apply flex flex-col gap-y-2 text-center
-    }
-    .statistics > .statistic > .value {
-        @apply font-title text-5xl after:content-['%'] after:text-3xl
-    }
-    .statistics > .statistic > .name {
-        @apply text-2xl font-light text-light-cyan
-    }
-    .footer-logo {
-        @apply w-20 h-20
-    }
-    .footer-icon {
-        @apply w-6 h-6 darken-hover fill-columbia-blue
-    }
-    .footer-element {
-        @apply font-light vertical-center
-    }
-    .footer-title {
-        @apply text-columbia-blue text-xl font-title font-normal
-    }
-    .type-selector {
-        @apply flex flex-row flex-wrap gap-4 justify-center
-    }
-    .type-selector > li {
-        @apply hover:font-normal hover:text-columbia-blue transition-all duration-300 select-none cursor-pointer
-    }
-    .type-selector > li:not(.selected) {
-        @apply font-extralight
-    }
-    .type-selector > .selected {
-        @apply text-columbia-blue font-title
-    }
-    .airport-selector {
-        @apply flex flex-row rounded-t-full
-    }
-    .airport-selector > li {
-        @apply hover:font-normal hover:text-columbia-blue transition-all duration-300 bg-space-blue h-full p-2 border-space-blue border-b-2 hover:border-columbia-blue select-none cursor-pointer uppercase
-    }
-    .airport-selector> li:not(.selected) {
-        @apply font-light
-    }
-    .airport-selector> .selected {
-        @apply text-columbia-blue font-title border-columbia-blue
-    }
-    .airport-input {
-        @apply underline decoration-dotted bg-transparent w-14 p-2 text-center focus-visible:outline-columbia-blue focus-visible:outline-0 focus-visible:no-underline uppercase
-    }
-    .fade-enter-active,
-    .fade-leave-active {
-        @apply transition-opacity duration-200
-    }
-
-    .fade-enter-from,
-    .fade-leave-to {
-        @apply opacity-0
-    }
-    .chart-card.selected {
-        @apply text-columbia-blue
-    }
-    input[type="number"] {
-        -moz-appearance: textfield;
-    }
-    .dark-filter {
-        filter: invert(70%) contrast(228%) brightness(80%) hue-rotate(180deg)
-    }
-    .sidebar-icon {
-        @apply rounded-full text-oxford-blue bg-columbia-blue w-16 h-16 p-4 center hover:bg-oxford-blue colour-transition hover:text-columbia-blue
-    }
-    .sidebar-icon.disabled {
-        @apply bg-gray-600 text-columbia-blue
-    }
-
+  .fade-enter-from,
+  .fade-leave-to {
+    @apply opacity-0;
+  }
+  .chart-card.selected {
+    @apply text-columbia-blue;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+  .dark-filter {
+    filter: invert(70%) contrast(228%) brightness(80%) hue-rotate(180deg);
+  }
+  .sidebar-icon {
+    @apply rounded-full text-oxford-blue bg-columbia-blue w-16 h-16 p-4 center hover:bg-oxford-blue colour-transition hover:text-columbia-blue;
+  }
+  .sidebar-icon.disabled {
+    @apply bg-gray-600 text-columbia-blue;
+  }
 }

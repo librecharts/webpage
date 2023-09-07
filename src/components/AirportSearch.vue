@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import * as airports from '@mm-coder/ourairports-json'
-import { getICAOCodes } from '@/api'
+import { getAirports, getICAOCodes } from '@/api'
 import { computed, ref } from 'vue'
 const input = ref<string>('')
 const regionNamesInEnglish = new Intl.DisplayNames(['en'], { type: 'region' })
 const systemIcaoCodes = await getICAOCodes()
 const selectedAirport = ref<string>('')
-const systemAirports = airports.default.filter((airport) =>
+const airports = await getAirports()
+const systemAirports = airports.value.filter((airport) =>
   systemIcaoCodes.value.includes(airport.ident)
 )
 const placeholder = computed(() => {

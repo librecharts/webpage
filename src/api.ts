@@ -30,6 +30,11 @@ export async function getICAOCodes(): Promise<ComputedRef<Array<string>>> {
   return computed(() => (error.value ? error.value : JSON.parse(data.value)))
 }
 
+export async function getAirports(): Promise<ComputedRef<Array<string>>> {
+  const { isFetching, error, data } = await useFetch('./datasets/airports.json')
+  return computed(() => (error.value ? error.value : JSON.parse(data.value)))
+}
+
 export function getChartFromCache(url: string): string {
   /**
    * Returns a chart's URL in the proxy
