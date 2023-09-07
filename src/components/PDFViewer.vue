@@ -104,17 +104,20 @@ onBeforeUnmount(() => {
   <div class="center h-full" v-if="!loaded">
     <i class="gg-spinner-alt" style="--ggs: 3"></i>
   </div>
-  <div class="h-full">
-    <div class="my-0 mx-auto" :class="isDarkMode ? 'dark-filter' : ''">
+  <div class="h-full overflow-y-scroll">
+    <div
+      class="overflow-auto transition-all duration-300 inset-y-4 center relative"
+      :class="isDarkMode ? 'dark-filter' : ''"
+    >
       <VuePDF
         ref="canvasContainer"
         @loaded="onLoaded"
-        class="h-full w-full"
         :pdf="pdfContent"
         :page="page"
         :scale="computedScale"
-        :rotation="rotation"
-        fit-parent
+        :rotation="0"
+        :text-layer="false"
+        :annotation-layer="false"
       ></VuePDF>
     </div>
   </div>
