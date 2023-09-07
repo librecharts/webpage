@@ -160,7 +160,7 @@
         @apply bg-columbia-blue text-oxford-blue
     }
     .statistics {
-        @apply flex md:flex-row md:justify-between md:items-center
+        @apply flex md:flex-row justify-between
     }
     .statistics > .statistic {
         @apply flex flex-col gap-y-2 text-center

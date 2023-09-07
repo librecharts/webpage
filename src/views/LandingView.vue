@@ -106,16 +106,18 @@
         </div>
       </div>
     </div>
-    <KeepAlive>
-      <Suspense timeout="0">
-        <CoverageCard :provider="selectedProvider"></CoverageCard>
-        <template #fallback>
-          <div class="flex flex-col items-center">
-            <i class="gg-spinner-alt"></i>
-          </div>
-        </template>
-      </Suspense>
-    </KeepAlive>
+    <Transition>
+      <KeepAlive>
+        <Suspense timeout="0">
+          <CoverageCard :provider="selectedProvider"></CoverageCard>
+          <template #fallback>
+            <div class="flex flex-col items-center">
+              <i class="gg-spinner-alt"></i>
+            </div>
+          </template>
+        </Suspense>
+      </KeepAlive>
+    </Transition>
   </section>
   <section class="w-full p-10 center space-y-10">
     <h1 class="text-4xl font-title">Why Librecharts?</h1>

@@ -144,7 +144,7 @@ onBeforeUnmount(() => {
       </div>
     </div>
   </div>
-  <div class="p-2 fixed bottom-20 right-0 mr-4 h-96 z-20">
+  <div v-if="loaded" class="p-2 fixed bottom-20 right-0 mr-4 h-96 z-20">
     <div class="flex flex-col gap-4 justify-end h-full">
       <div v-show="scaleInput != 'auto'" class="sidebar-icon" @click="scaleInput = 'auto'">
         <i class="gg-maximize"></i>

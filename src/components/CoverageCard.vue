@@ -20,7 +20,7 @@ function getCoverage(array: Array<string>): number {
    *
    */
   let intersectedArray: string[]
-  array = [new Set(array)]
+  array = [...new Set(array)]
   intersectedArray = array.filter((airport) => icaoCodes.value.includes(airport))
   return intersectedArray.length
 }
@@ -29,7 +29,7 @@ const coverage = computed(() => {
   return {
     arrival_and_departure: {
       array: [
-        new Set(
+        ...new Set(
           Array.prototype.concat(
             statisticsData.value.arrival_airports,
             statisticsData.value.departure_airports
@@ -45,7 +45,7 @@ const coverage = computed(() => {
     },
     arrival_or_departure: {
       array: [
-        new Set(
+        ...new Set(
           Array.prototype.concat(
             statisticsData.value.arrival_airports,
             statisticsData.value.departure_airports
@@ -58,7 +58,7 @@ const coverage = computed(() => {
     },
     at_least_one: {
       array: [
-        new Set(
+        ...new Set(
           Array.prototype.concat(
             statisticsData.value.arrival_airports,
             statisticsData.value.departure_airports,
@@ -76,7 +76,7 @@ const coverage = computed(() => {
 </script>
 
 <template>
-  <div class="statistics">
+  <div v-if="coverage.arrival_and_departure.coverage" class="statistics">
     <div class="statistic">
       <span class="value">{{
         Math.round(
@@ -102,8 +102,11 @@ const coverage = computed(() => {
             100
         )
       }}</span>
-      <span class="name">At least one airport</span>
+      <span class="name">At least one Airport</span>
     </div>
+  </div>
+  <div class="text-center" v-else>
+    <span class="text-xl uppercase text-gray-600">No flights found</span>
   </div>
 </template>
 

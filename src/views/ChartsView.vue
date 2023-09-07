@@ -90,7 +90,7 @@
         <div class="p-2 px-4 bg-space-blue flex flex-row items-center gap-1">
           <CloudIcon class="w-5 h-5 text-light-cyan"></CloudIcon>
           <span class="font-thin">Source</span>
-          <a :href="selectedChart.source.url">{{ selectedChart.source.name }}</a>
+          <a :href="selectedChart.source.url" target="_blank">{{ selectedChart.source.name }}</a>
         </div>
       </footer>
     </div>
