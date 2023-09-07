@@ -146,9 +146,9 @@
         description="Community sourced charts and a fully public API"
       ></FeatureIconCard>
       <FeatureIconCard
-        name="Superb Coverage"
-        icon="gg-globe"
-        description="Superior coverage provided by community contributions"
+        name="Dark Mode"
+        icon="gg-moon"
+        description="Dark mode available for all charts independent of source"
       ></FeatureIconCard>
     </div>
   </section>

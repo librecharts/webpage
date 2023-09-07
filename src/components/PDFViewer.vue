@@ -13,11 +13,13 @@ const props = defineProps({
 
 const scale = ref<number>(1)
 const pageInput = ref<number>(1)
+const rotation = ref<number>(1)
 const chart = toRef(props, 'chart')
 let pdfContent = ref()
 let totalPages = ref<number>()
 const loaded = ref(false)
 const canvasContainer = ref(null)
+const isDarkMode = ref<boolean>(false)
 
 function loadCurrentChart() {
   if (pdfContent.value) {
@@ -33,11 +35,6 @@ loadCurrentChart() // This will load on component init
 
 watch(chart, () => {
   loadCurrentChart()
-})
-
-watch(pageInput, () => {
-  console.log(pageInput.value + 1 <= totalPages.value ? 'Up button active' : '')
-  console.log(pageInput.value - 1 >= totalPages.value ? 'Down button active' : '')
 })
 
 function onLoaded() {
@@ -61,6 +58,11 @@ onBeforeUnmount(() => {
   <div v-show="loaded" class="w-full center z-50">
     <div class="bg-oxford-blue rounded-lg p-2 absolute top-0 mt-4 w-96 center">
       <div class="flex flex-row gap-4">
+        <i
+          class="text-columbia-blue darken-hover"
+          @click="isDarkMode = !isDarkMode"
+          :class="isDarkMode ? 'gg-sun' : 'gg-moon'"
+        ></i>
         <div class="flex flex-row gap-2 text-columbia-blue">
           <i
             class="gg-chevron-up-o"
@@ -92,14 +94,18 @@ onBeforeUnmount(() => {
             <option value="0.50">50%</option>
           </select>
         </div>
+        <div class="flex flex-row gap-2 text-columbia-blue">
+          <i @click="rotation = rotation + 90" class="gg-corner-up-left"></i>
+          <i @click="rotation = rotation - 90" class="gg-corner-up-right"></i>
+        </div>
       </div>
     </div>
   </div>
   <div class="center h-full" v-if="!loaded">
     <i class="gg-spinner-alt" style="--ggs: 3"></i>
   </div>
-  <div class="center h-full">
-    <div class="overflow-y-scroll">
+  <div class="h-full">
+    <div class="my-0 mx-auto" :class="isDarkMode ? 'dark-filter' : ''">
       <VuePDF
         ref="canvasContainer"
         @loaded="onLoaded"
@@ -107,6 +113,8 @@ onBeforeUnmount(() => {
         :pdf="pdfContent"
         :page="page"
         :scale="computedScale"
+        :rotation="rotation"
+        fit-parent
       ></VuePDF>
     </div>
   </div>

@@ -225,5 +225,8 @@
     input[type="number"] {
         -moz-appearance: textfield;
     }
+    .dark-filter {
+        filter: invert(64%) contrast(228%) brightness(80%) hue-rotate(180deg)
+    }
 
 }
