@@ -9,41 +9,27 @@ const url = ref('')
 const deBouncedurl = debouncedRef(url, 1000)
 const router = useRouter()
 
-watchEffect(() => {
-  if (simBriefID.value.length >= 6 && simBriefID.value.length <= 32) {
-    url.value = `https://www.simbrief.com/api/xml.fetcher.php?username=${simBriefID.value}&json=1`
+async function importFromSimBrief() {
+  url.value = `https://www.simbrief.com/api/xml.fetcher.php?username=${simBriefID.value}&json=1`
+  const { data } = await useFetch(url)
+  const json = JSON.parse(data.value)
+  let flightPlan = {
+    flight_number: json.general.icao_airline + json.general.flight_number,
+    origin: json.origin.icao_code,
+    destination: json.destination.icao_code,
+    alternate: json.alternate.icao_code,
+    route: json.general.route
   }
-})
-
-const { isFetching, data, error } = await useFetch(deBouncedurl)
-const flightPlan = computed(() => {
-  if (error.value !== null) {
-    console.log(error.value)
-    return error.value
-  } else {
-    if (data.value !== null) {
-      console.log(data.value)
-      return {
-        flight_number: data.value.general.icao_airline + data.value.general.flight_number,
-        origin: data.value.origin.icao_code,
-        destination: data.value.destination.icao_code,
-        alternate: data.value.alternate.icao_code,
-        route: data.value.general.route
-      }
-    }
-  }
-})
-
-function importFromSimBrief() {
-  router.push({
+  console.log(flightPlan)
+  await router.push({
     path: '/charts',
     query: {
-      destination: flightPlan.value?.destination,
-      origin: flightPlan.value?.origin,
-      alternate: flightPlan.value?.alternate
+      destination: flightPlan.destination,
+      origin: flightPlan.origin,
+      alternate: flightPlan.alternate
     },
     params: {
-      route: flightPlan.value?.route
+      route: flightPlan.route
     }
   })
 }
@@ -61,7 +47,10 @@ const props = defineProps({
           <span class="text-xl font-medium">Please input your SimBrief Username</span>
           <span class="text-sm font-light"
             >To get your SimBrief Username, you can go to your
-            <a href="https://www.simbrief.com/system/profile.php" class="dotted-link"
+            <a
+              href="https://www.simbrief.com/system/profile.php"
+              class="dotted-link"
+              target="_blank"
               >SimBrief Account Settings</a
             >
             and fetch your alias.
@@ -70,43 +59,21 @@ const props = defineProps({
         <label class="form-element md:w-1/2">
           <input type="text" v-model="simBriefID" name="airport" placeholder="SimBrief Username" />
         </label>
+        <div class="w-full flex flex-row mt-2">
+          <button
+            class="primary-button p-2"
+            @click="
+              async () => {
+                await importFromSimBrief()
+              }
+            "
+          >
+            Import
+          </button>
+        </div>
         <div class="prose text-xs text-inherit font-thin">
           SimBrief is a trademark of Navigraph. Navigraph does not endorse or is otherwise related
           with this service.
-        </div>
-      </div>
-      <div v-if="simBriefID.length <= 32 && simBriefID.length >= 6" class="space-y-4">
-        <div class="center p-2 mt-10 bg-oxford-blue rounded-lg">
-          <span v-if="!flightPlan"><i class="gg-spinner-alt"></i></span>
-          <div v-else>
-            <div v-if="flightPlan" class="space-y-4">
-              <div class="flex flex-row gap-8">
-                <div class="flex flex-col">
-                  <span class="font-title">Flt. Number</span>
-                  <span class="font-light">{{ flightPlan.flight_number }}</span>
-                </div>
-                <div class="flex flex-col">
-                  <span class="font-title">Origin</span>
-                  <span class="font-light">{{ flightPlan.origin }}</span>
-                </div>
-                <div class="flex flex-col">
-                  <span class="font-title">Departure</span>
-                  <span class="font-light">{{ flightPlan.destination }}</span>
-                </div>
-                <div v-if="flightPlan.alternate" class="flex flex-col">
-                  <span class="font-title">Alternate</span>
-                  <span class="font-light">{{ flightPlan.alternate }}</span>
-                </div>
-              </div>
-              <div class="flex flex-col">
-                <span class="font-title">Route</span>
-                <span class="font-light">{{ flightPlan.route }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="w-full flex flex-row justify-end">
-          <button class="primary-button p-2" @click="importFromSimBrief">Import</button>
         </div>
       </div>
     </div>
